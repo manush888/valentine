@@ -68,6 +68,7 @@
             right: 0;
             transform: rotate(180deg);
             transform:  scaleY(-1);
+            transition: top 0.5s cubic-bezier(1,-0.02, 0.43, 1.01);
         }
 
         .btnwrapper {
@@ -97,7 +98,7 @@
         let count = 0;
 
         function moveButton() {
-            const maxMove = 100;
+            const maxMove = 50;
             const randomX = (Math.random() * maxMove * 2) - maxMove;
             const randomY = (Math.random() * maxMove * 2) - maxMove;
             no.style.position = 'relative';
