@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: center;
+        }
+
+        h1 {
+            color: #fa1789;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            border: none;
+        }
+
+        .yes-btn {
+            background-color: #08ce22;
+        }
+
+        .no-btn {
+            background-color: #e41453;
+        }
+
+        .no-btn:hover {
+            background-color: #000000;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .one, .two {
+            width: 200px;
+            height: 200px;
+            position: fixed;
+            z-index: -1;
+        }
+
+        .one {
+            bottom: -10px;
+            left: 0;
+        }
+
+        .two {
+            top: -200px;
+            right: 0;
+            transform: rotate(180deg) scaleY(-1);
+        }
+
+        .btnwrapper {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="btnwrapper">
+            <button class="yes-btn btn" onclick="specialSurprise()">Yes!</button>
+            <button class="no-btn btn" id="no">No</button>
+        </div>
+    </div>
+
+    <img src="./1.png" class="one" alt="Heart Image 1">
+    <img src="./2.png" class="two" id="scarry" alt="Heart Image 2">
+
+    <script>
+        function specialSurprise() {
+            document.body.innerHTML = '<h1 style="color:#ff69b4; text-align:center; margin-top:20vh;">I knew that ❤️🥰</h1>';
+        }
+
+        const no = document.getElementById('no');
+        const scarry = document.getElementById('scarry');
+        let count = 0;
+
+        function moveButton() {
+            const maxMove = 100;
+            const randomX = (Math.random() * maxMove * 2) - maxMove;
+            const randomY = (Math.random() * maxMove * 2) - maxMove;
+            no.style.position = 'relative';
+            no.style.left = `${randomX}px`;
+            no.style.top = `${randomY}px`;
+        }
+
+        no.addEventListener('mouseover', () => {
+            if (count >= 10) {
+                no.innerHTML = 'Yes!';
+                no.style.left = '0px';
+                no.style.top = '0px';
+                no.style.background = '#08ce22';
+            } else {
+                moveButton();
+                count++;
+                scarry.style.top = '-10px';
+                setTimeout(() => scarry.style.top = '-200px', 500);
+            }
+        });
+
+        no.addEventListener('click', () => {
+            if (count >= 10) {
+                no.innerHTML = 'Yes!';
+                no.style.left = '0px';
+                no.style.top = '0px';
+                no.style.background = '#08ce22';
+                specialSurprise();
+            } else {
+                moveButton();
+                count++;
+            }
+        });
+    </script>
+</body>
+</html>
